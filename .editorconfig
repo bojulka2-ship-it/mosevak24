@@ -1,0 +1,38 @@
+# EditorConfig — https://editorconfig.org
+# Единый стиль для всех редакторов и IDE.
+# Соответствует фактическому форматированию проекта: 2 пробела, UTF-8 без BOM, LF.
+
+root = true
+
+[*]
+charset = utf-8
+end_of_line = lf
+indent_style = space
+indent_size = 2
+insert_final_newline = true
+trim_trailing_whitespace = true
+max_line_length = 120
+
+[*.md]
+trim_trailing_whitespace = false
+
+[*.{html,css,js,json,webmanifest}]
+indent_size = 2
+
+[*.{xml,svg}]
+indent_size = 2
+
+[*.txt]
+indent_size = 2
+
+[Makefile]
+indent_style = tab
+
+# Внешние библиотеки и сгенерированные файлы — не переформатировать
+[lib/**]
+insert_final_newline = unset
+trim_trailing_whitespace = unset
+
+[*.min.js]
+insert_final_newline = unset
+trim_trailing_whitespace = unset

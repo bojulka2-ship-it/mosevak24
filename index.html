@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<!--
+  Content-Security-Policy.
+  Строгая политика: нет 'unsafe-inline' и 'unsafe-eval'. Работает, потому что весь
+  CSS и JS вынесены в css/ и js/, а иконки Lucide лежат локально в js/icons.js
+  (вместо lucide.min.js с unpkg на 444 КБ).
+  Ограничения мета-тега (см. SECURITY.md): frame-ancestors, sandbox и report-uri
+  в <meta> игнорируются браузером — только HTTP-заголовок.
+  GitHub Pages не позволяет задать произвольные заголовки, отсюда мета-тег.
+-->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; form-action 'self' https://script.google.com; img-src 'self' data: https://mc.yandex.ru; font-src 'self' https://fonts.gstatic.com; style-src 'self' https://fonts.googleapis.com; script-src 'self' https://mc.yandex.ru; connect-src 'self' https://nominatim.openstreetmap.org https://script.google.com https://script.googleusercontent.com https://mc.yandex.ru; frame-src https://yandex.ru; manifest-src 'self'; upgrade-insecure-requests">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>МОСЭВАК 24 — эвакуатор по Москве и МО, подача от 20 минут</title>
+<meta name="description" content="Эвакуатор 24/7 в Москве и Московской области. Подача от 20 минут, фиксированная цена до выезда, оплата наличными или СБП.">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="theme-color" content="#0e0f13">
+<meta name="color-scheme" content="dark">
+
+<!-- Open Graph / Twitter -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="МОСЭВАК 24">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:title" content="МОСЭВАК 24 — эвакуатор по Москве и МО, подача от 20 минут">
+<meta property="og:description" content="Эвакуатор 24/7 в Москве и Московской области. Подача от 20 минут, фиксированная цена до выезда, оплата наличными или СБП.">
+<meta property="og:url" content="https://bojulka2-ship-it.github.io/mosevak24/">
+<meta property="og:image" content="https://bojulka2-ship-it.github.io/mosevak24/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Эвакуатор МОСЭВАК 24 с автомобилем на платформе">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="МОСЭВАК 24 — эвакуатор по Москве и МО, подача от 20 минут">
+<meta name="twitter:description" content="Эвакуатор 24/7 в Москве и Московской области. Фиксированная цена до выезда, оплата наличными или СБП.">
+<meta name="twitter:image" content="https://bojulka2-ship-it.github.io/mosevak24/og-image.jpg">
+
+<link rel="canonical" href="https://bojulka2-ship-it.github.io/mosevak24/">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="manifest" href="site.webmanifest">
+
+<!-- Шрифты: переменные Unbounded и Manrope приходят одним файлом на семейство,
+     JetBrains Mono — статический, два файла. Итого 4 загрузки вместо 9. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500..700&family=Manrope:wght@400..800&family=JetBrains+Mono:wght@400;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500..700&family=Manrope:wght@400..800&family=JetBrains+Mono:wght@400;600&display=swap">
+<link rel="stylesheet" href="css/style.css">
+
+<!-- Иконки Lucide локально (js/icons.js), внешний CDN не подключается. -->
+<script src="js/icons.js" defer></script>
+<script src="js/app.js" defer></script>
+</head>
+<body>
+
+<a class="skip-link" href="#main">Перейти к содержимому</a>
+
+<noscript>
+  <div class="noscript-note">Для расчёта цены и отправки заявки нужен JavaScript. Звоните: <a href="tel:+74951282424">+7&nbsp;(495)&nbsp;128&#8209;24&#8209;24</a></div>
+</noscript>
+
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<!-- ============ ШАПКА ============ -->
+<header id="siteHeader">
+  <div class="wrap header-in">
+    <a href="#top" class="logo"><span class="logo-dot"></span>МОСЭВАК<span class="accent">·</span>24</a>
+    <nav class="desktop" aria-label="Основное меню">
+      <a href="#uslugi">Услуги</a>
+      <a href="#ceny">Цены</a>
+      <a href="#kalkulyator">Калькулятор</a>
+      <a href="#o-kompanii">О нас</a>
+      <a href="#faq">Вопросы</a>
+      <a href="#contacts">Контакты</a>
+    </nav>
+    <div class="header-right">
+      <!-- ПЛЕЙСХОЛДЕР: вымышленный номер, заменить на реальный -->
+      <a class="header-phone" href="tel:+74951282424">+7&nbsp;(495)&nbsp;128&#8209;24&#8209;24</a>
+      <a class="btn btn-primary" href="#contacts">Вызвать</a>
+      <button class="burger" id="burgerBtn" type="button" aria-label="Меню" aria-expanded="false" aria-controls="mobileNav"><i data-lucide="menu"></i></button>
+    </div>
+  </div>
+</header>
+<nav class="mobile-nav" id="mobileNav" aria-label="Мобильное меню">
+  <a href="#uslugi">Услуги</a>
+  <a href="#ceny">Цены</a>
+  <a href="#kalkulyator">Калькулятор</a>
+  <a href="#o-kompanii">О нас</a>
+  <a href="#faq">Вопросы</a>
+  <a href="#contacts">Контакты · Вызвать эвакуатор</a>
+</nav>
+
+<main id="main">
+
+<!-- ============ ПЕРВЫЙ ЭКРАН ============ -->
+<section class="hero" id="top" aria-labelledby="hero-title">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="sec-tag reveal">Служба эвакуации · Москва и область</span>
+      <h1 class="reveal" id="hero-title" data-delay="80">Эвакуатор <span class="accent">24/7</span></h1>
+      <p class="sub reveal" data-delay="160">Подача по Москве от 20 минут. Называем точную цену до выезда — и не меняем её на месте.</p>
+      <div class="hero-cta reveal" data-delay="240">
+        <a class="btn btn-primary" href="#contacts"><i data-lucide="phone-call"></i>Вызвать эвакуатор</a>
+        <a class="btn btn-ghost" href="tel:+74951282424">+7&nbsp;(495)&nbsp;128&#8209;24&#8209;24</a>
+      </div>
+      <div class="hero-facts reveal" data-delay="320">
+        <span><i data-lucide="clock"></i>круглосуточно</span>
+        <span><i data-lucide="wallet"></i>наличные · СБП</span>
+        <span><i data-lucide="map-pin"></i>Москва и МО</span>
+      </div>
+    </div>
+
+    <svg class="scene reveal" data-delay="200" viewBox="0 0 960 400" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Эвакуатор с автомобилем на платформе">
+      <rect x="0" y="310" width="960" height="90" fill="#121419"/>
+      <line x1="0" y1="310" x2="960" y2="310" stroke="#262a33" stroke-width="2"/>
+      <path class="road-line" d="M0 352 H960" stroke="#3a4050" stroke-width="6" stroke-dasharray="46 34"/>
+      <g stroke="#333947" stroke-width="4" stroke-linecap="round">
+        <line class="speed-line" x1="52" y1="140" x2="140" y2="140"/>
+        <line class="speed-line" x1="30" y1="196" x2="118" y2="196"/>
+        <line class="speed-line" x1="66" y1="252" x2="154" y2="252"/>
+      </g>
+      <ellipse cx="480" cy="313" rx="320" ry="9" fill="rgba(0,0,0,.45)"/>
+      <g class="truck-bob">
+        <polygon class="beam-l" points="676,144 616,110 676,126" fill="#ffb020"/>
+        <polygon class="beam-r" points="722,144 782,110 722,126" fill="#ffb020"/>
+        <rect x="170" y="232" width="470" height="16" rx="3" fill="#242830"/>
+        <rect x="170" y="178" width="440" height="18" rx="3" fill="#e2570f"/>
+        <rect x="170" y="178" width="440" height="4" fill="#ff6b1a"/>
+        <rect x="586" y="156" width="26" height="22" rx="3" fill="#242830"/>
+        <path d="M232 178 v-26 q0-8 9-9 l64-7 34-30 q5-5 13-5 h94 q9 0 13 7 l16 26 42 8 q13 2 13 12 v24 z" fill="#1d2129"/>
+        <path d="M312 139 l27-24 q3-3 8-3 h40 v27 z" fill="#343b47"/>
+        <path d="M395 112 h48 q6 0 9 6 l11 21 h-68 z" fill="#343b47"/>
+        <circle cx="280" cy="160" r="15" fill="#101318" stroke="#3a4150" stroke-width="5"/>
+        <circle cx="470" cy="160" r="15" fill="#101318" stroke="#3a4150" stroke-width="5"/>
+        <polygon points="252,178 268,178 264,169 256,169" fill="#2a2e36"/>
+        <polygon points="442,178 458,178 454,169 446,169" fill="#2a2e36"/>
+        <rect x="676" y="136" width="44" height="16" rx="4" fill="#ffb020"/>
+        <rect x="612" y="152" width="158" height="96" rx="10" fill="#ff6b1a"/>
+        <rect x="636" y="166" width="74" height="34" rx="4" fill="#171a20"/>
+        <rect x="726" y="166" width="34" height="34" rx="4" fill="#171a20"/>
+        <line x1="720" y1="166" x2="720" y2="240" stroke="rgba(0,0,0,.2)" stroke-width="2"/>
+        <rect x="688" y="212" width="18" height="5" rx="2.5" fill="rgba(0,0,0,.28)"/>
+        <text x="642" y="234" font-family="JetBrains Mono, monospace" font-size="12" font-weight="600" letter-spacing="2" fill="#1b1206">МОСЭВАК</text>
+        <rect x="606" y="234" width="170" height="14" rx="4" fill="#2a2e36"/>
+        <rect x="750" y="216" width="16" height="10" rx="2" fill="#ffd166"/>
+        <g transform="translate(250 280)"><g class="wheel">
+          <circle r="26" fill="#14161b" stroke="#31363f" stroke-width="7"/>
+          <rect x="-2.5" y="-21" width="5" height="42" fill="#31363f"/>
+          <rect x="-21" y="-2.5" width="42" height="5" fill="#31363f"/>
+          <circle r="8" fill="#4a5262"/>
+        </g></g>
+        <g transform="translate(334 280)"><g class="wheel">
+          <circle r="26" fill="#14161b" stroke="#31363f" stroke-width="7"/>
+          <rect x="-2.5" y="-21" width="5" height="42" fill="#31363f"/>
+          <rect x="-21" y="-2.5" width="42" height="5" fill="#31363f"/>
+          <circle r="8" fill="#4a5262"/>
+        </g></g>
+        <g transform="translate(724 280)"><g class="wheel">
+          <circle r="26" fill="#14161b" stroke="#31363f" stroke-width="7"/>
+          <rect x="-2.5" y="-21" width="5" height="42" fill="#31363f"/>
+          <rect x="-21" y="-2.5" width="42" height="5" fill="#31363f"/>
+          <circle r="8" fill="#4a5262"/>
+        </g></g>
+      </g>
+    </svg>
+  </div>
+</section>
+
+<!-- лента 1 -->
+<div class="tape tape-orange" aria-hidden="true">
+  <div class="tape-track" id="tape1"></div>
+</div>
+
+<!-- ============ УСЛУГИ ============ -->
+<section class="section" id="uslugi" aria-labelledby="uslugi-title">
+  <div class="wrap services-grid">
+    <div class="sticky">
+      <span class="sec-tag reveal">01 · Услуги</span>
+      <h2 class="reveal" id="uslugi-title" data-delay="80">Что мы делаем</h2>
+      <p class="lead reveal" data-delay="160">Любая ситуация, в которой машина не может ехать своим ходом — от заглохшего двигателя до серьёзного ДТП.</p>
+    </div>
+    <div id="servicesList" class="reveal" data-delay="120"></div>
+  </div>
+</section>
+
+<!-- ============ ПАРК ============ -->
+<section class="section" id="park" aria-labelledby="park-title">
+  <div class="wrap">
+    <span class="sec-tag reveal">02 · Парк</span>
+    <h2 class="reveal" id="park-title" data-delay="80">Техника под любую задачу</h2>
+    <p class="lead reveal" data-delay="160">Десять собственных эвакуаторов: три типа платформ закрывают всё — от мотоцикла до перевёрнутого внедорожника.</p>
+    <div class="fleet reveal" data-delay="120">
+      <div class="fleet-card">
+        <div class="spec">6 машин · 2–4 т</div>
+        <h3>Ломаная платформа</h3>
+        <p>Основной парк для легковых авто и кроссоверов. Быстрая погрузка своим ходом или лебёдкой, мягкая фиксация колёс.</p>
+      </div>
+      <div class="fleet-card">
+        <div class="spec">3 машины · до 5 т</div>
+        <h3>Сдвижная платформа с лебёдкой</h3>
+        <p>Низкая посадка для спорткаров и авто с заблокированными колёсами — погрузка без крутых углов и рывков.</p>
+      </div>
+      <div class="fleet-card">
+        <div class="spec">1 машина · до 7 т</div>
+        <h3>Кран-манипулятор (КМУ)</h3>
+        <p>Перевёрнутые автомобили, серьёзные ДТП, подъём машины с обочины, разделительной или из кювета.</p>
+      </div>
+    </div>
+    <div class="ph-row">
+      <figure class="ph reveal" data-delay="80">
+        <picture>
+          <source srcset="photos/01-park-flatbed.webp" type="image/webp">
+          <img src="photos/01-park-flatbed.jpg" alt="Эвакуатор с ломаной платформой" width="678" height="452" loading="lazy" decoding="async">
+        </picture>
+        <div class="ph-fb"><i data-lucide="image"></i><b>Эвакуатор с ломаной платформой</b><span class="mono">файл: photos/01-park-flatbed.jpg</span></div>
+        <figcaption>Ломаная платформа · основной парк</figcaption>
+      </figure>
+      <figure class="ph reveal" data-delay="160">
+        <picture>
+          <source srcset="photos/02-park-slider.webp" type="image/webp">
+          <img src="photos/02-park-slider.jpg" alt="Эвакуатор со сдвижной платформой" width="738" height="414" loading="lazy" decoding="async">
+        </picture>
+        <div class="ph-fb"><i data-lucide="image"></i><b>Сдвижная платформа с лебёдкой</b><span class="mono">файл: photos/02-park-slider.jpg</span></div>
+        <figcaption>Сдвижная платформа · низкая посадка</figcaption>
+      </figure>
+      <figure class="ph reveal" data-delay="240">
+        <picture>
+          <source srcset="photos/03-park-crane.webp" type="image/webp">
+          <img src="photos/03-park-crane.jpg" alt="Эвакуатор с краном-манипулятором" width="646" height="473" loading="lazy" decoding="async">
+        </picture>
+        <div class="ph-fb"><i data-lucide="image"></i><b>Кран-манипулятор</b><span class="mono">файл: photos/03-park-crane.jpg</span></div>
+        <figcaption>КМУ · до 7 тонн</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ЦЕНЫ ============ -->
+<section class="section" id="ceny" aria-labelledby="ceny-title">
+  <div class="wrap prices-grid">
+    <div>
+      <span class="sec-tag reveal">03 · Цены</span>
+      <h2 class="reveal" id="ceny-title" data-delay="80">Стоимость без сюрпризов</h2>
+      <p class="lead reveal" data-delay="160">Диспетчер называет итоговую сумму за минуту — по адресу и состоянию автомобиля. Калькулятор ниже покажет ориентир за 10 секунд.</p>
+      <a class="btn btn-primary reveal mt-30" data-delay="240" href="#kalkulyator"><i data-lucide="calculator"></i>Рассчитать самому</a>
+    </div>
+    <div class="price-panel reveal" data-delay="120">
+      <div class="price-group">По Москве · в пределах МКАД</div>
+      <div class="price-row"><span class="name">Легковой автомобиль</span><span class="dots"></span><span class="val">от 2 900 ₽</span></div>
+      <div class="price-row"><span class="name">Кроссовер</span><span class="dots"></span><span class="val">от 3 400 ₽</span></div>
+      <div class="price-row"><span class="name">Внедорожник / минивэн</span><span class="dots"></span><span class="val">от 4 200 ₽</span></div>
+      <div class="price-row"><span class="name">Мотоцикл / квадроцикл</span><span class="dots"></span><span class="val">от 2 500 ₽</span></div>
+      <div class="price-group">За МКАД</div>
+      <div class="price-row"><span class="name">До 50 км от МКАД</span><span class="dots"></span><span class="val">+ 55 ₽/км</span></div>
+      <div class="price-row"><span class="name">Свыше 50 км — межгород</span><span class="dots"></span><span class="val">45 ₽/км</span></div>
+      <div class="price-group">Доплаты</div>
+      <div class="price-row"><span class="name">Заблокированные колёса</span><span class="dots"></span><span class="val">+ 1 500 ₽</span></div>
+      <div class="price-row"><span class="name">Перевёртыш (КМУ)</span><span class="dots"></span><span class="val">+ от 2 500 ₽</span></div>
+      <div class="price-row"><span class="name">Вытаскивание из кювета (лебёдка)</span><span class="dots"></span><span class="val">+ от 2 000 ₽</span></div>
+      <div class="price-row"><span class="name">Ожидание свыше 1 часа (первый — бесплатно)</span><span class="dots"></span><span class="val">700 ₽/час</span></div>
+      <div class="price-fix"><i data-lucide="shield-check"></i>Цена фиксируется до выезда и не меняется на месте. Оплата после доставки — наличными или по СБП.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ КАЛЬКУЛЯТОР ============ -->
+<section class="section" id="kalkulyator" aria-labelledby="calc-title">
+  <div class="wrap calc-grid">
+    <div>
+      <span class="sec-tag reveal">04 · Калькулятор</span>
+      <h2 class="reveal" id="calc-title" data-delay="80">Считайте цену сами</h2>
+      <p class="lead reveal" data-delay="160">Предварительный расчёт за 10 секунд. Точную сумму диспетчер зафиксирует до выезда — она не изменится.</p>
+      <div class="calc-panel reveal" data-delay="120">
+        <span class="calc-label" id="lbl-cars">Тип автомобиля</span>
+        <div class="seg" id="calcCars" role="group" aria-labelledby="lbl-cars"></div>
+        <span class="calc-label mt-26">Расстояние за МКАД</span>
+        <input type="range" id="calcKm" min="0" max="200" value="0" step="1" aria-label="Расстояние за МКАД в километрах">
+        <div class="range-out"><span id="calcKmOut">в пределах МКАД</span><span>до 50 км — 55 ₽/км · далее — 45 ₽/км</span></div>
+        <span class="calc-label mt-22" id="lbl-opts">Дополнительные работы</span>
+        <div id="calcOpts" role="group" aria-labelledby="lbl-opts"></div>
+      </div>
+    </div>
+    <div class="result reveal" data-delay="200" aria-live="polite">
+      <div class="price-panel">
+        <div class="price-group mt-0">Ваш расчёт</div>
+        <div id="calcRows"></div>
+        <div class="calc-total-row"><span class="cap">Итого ориентировочно</span><span class="calc-total" id="calcTotal">2 900 ₽</span></div>
+        <p class="calc-hint">Ночью, в выходные и праздники наценок нет. Расчёт предварительный: диспетчер подтвердит точную сумму по телефону.</p>
+        <button class="btn btn-primary" id="calcFix" type="button"><i data-lucide="lock"></i>Зафиксировать цену в заявке</button>
+        <div class="pay-note">оплата после доставки · наличные / СБП</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ О КОМПАНИИ ============ -->
+<section class="section" id="o-kompanii" aria-labelledby="about-title">
+  <div class="wrap about-grid">
+    <div>
+      <span class="sec-tag reveal">05 · О компании</span>
+      <h2 class="reveal" id="about-title" data-delay="80">Отвечаем за каждый рейс</h2>
+      <p class="lead reveal" data-delay="160">Служба эвакуации с собственным парком из 10 машин и водителями со стажем от 5 лет. Работаем без посредников: аккуратная погрузка, надёжная фиксация, доставка в срок.</p>
+      <ul class="about-checks reveal" data-delay="240">
+        <li><i data-lucide="check"></i>Колёса крепим стяжными ремнями — без скачков и царапин по кузову</li>
+        <li><i data-lucide="check"></i>Выдаём чек и полный пакет документов о перевозке</li>
+        <li><i data-lucide="check"></i>Оплата после доставки — наличными или переводом по СБП</li>
+      </ul>
+    </div>
+    <div class="stats reveal" data-delay="120">
+      <div class="stat"><div class="num"><span class="counter" data-target="7">0</span></div><div class="cap">лет на дорогах Москвы</div></div>
+      <div class="stat"><div class="num"><span class="counter" data-target="10">0</span></div><div class="cap">эвакуаторов в собственном парке</div></div>
+      <div class="stat"><div class="num"><span class="counter" data-target="20">0</span><small> мин</small></div><div class="cap">минимальная подача по городу</div></div>
+      <div class="stat"><div class="num"><span class="counter" data-target="4800">0</span><small>+</small></div><div class="cap">выполненных рейсов</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ КАК ПРОХОДИТ РАБОТА ============ -->
+<section class="section" id="etapy" aria-labelledby="etapy-title">
+  <div class="wrap">
+    <span class="sec-tag reveal">06 · Этапы</span>
+    <h2 class="reveal" id="etapy-title" data-delay="80">Как проходит работа</h2>
+    <div class="steps" id="stepsBlock">
+      <div class="steps-line"><i></i></div>
+      <div class="steps-grid">
+        <div class="step reveal"><div class="step-dot">01</div><div><h3><i data-lucide="phone-call"></i>Заявка</h3><p>Звонок или форма на сайте: адрес, состояние авто, куда везти.</p></div></div>
+        <div class="step reveal" data-delay="120"><div class="step-dot">02</div><div><h3><i data-lucide="calculator"></i>Расчёт</h3><p>Называем точную стоимость и время подачи — фиксируем цену.</p></div></div>
+        <div class="step reveal" data-delay="240"><div class="step-dot">03</div><div><h3><i data-lucide="truck"></i>Выезд</h3><p>Эвакуатор на месте от 20 минут. Аккуратная погрузка и крепление.</p></div></div>
+        <div class="step reveal" data-delay="360"><div class="step-dot">04</div><div><h3><i data-lucide="flag"></i>Доставка</h3><p>Довозим до сервиса или адреса. Оплата по факту — наличными или СБП.</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- лента 2 -->
+<div class="tape tape-dark rev" aria-hidden="true">
+  <div class="tape-track" id="tape2"></div>
+</div>
+
+<!-- ============ ПРЕИМУЩЕСТВА ============ -->
+<section class="section" id="plus" aria-labelledby="plus-title">
+  <div class="wrap adv-grid">
+    <div>
+      <span class="sec-tag reveal">07 · Преимущества</span>
+      <h2 class="reveal" id="plus-title" data-delay="80">Почему нам доверяют машины</h2>
+      <p class="lead reveal" data-delay="160">Простые правила, которые мы не нарушаем — даже ночью и в метель.</p>
+    </div>
+    <div class="adv-list">
+      <div class="adv reveal"><div class="row"><i data-lucide="zap"></i><h3>Подача от 20 минут</h3></div><p>Среднее время прибытия по Москве от подтверждения заявки.</p></div>
+      <div class="adv reveal" data-delay="80"><div class="row"><i data-lucide="clock"></i><h3>Работаем 24/7</h3></div><p>Ночью, в праздники и в непогоду — диспетчер всегда на линии.</p></div>
+      <div class="adv reveal" data-delay="160"><div class="row"><i data-lucide="badge-check"></i><h3>Опытные водители</h3></div><p>Стаж от 5 лет, аккуратная погрузка и крепление автомобиля.</p></div>
+      <div class="adv reveal" data-delay="240"><div class="row"><i data-lucide="truck"></i><h3>Собственная техника</h3></div><p>Десять платформ трёх типов: ломаные, сдвижные и кран-манипулятор.</p></div>
+      <div class="adv reveal" data-delay="320"><div class="row"><i data-lucide="wallet"></i><h3>Без скрытых доплат</h3></div><p>Цена фиксируется до выезда и не пересматривается на месте.</p></div>
+      <div class="adv reveal" data-delay="400"><div class="row"><i data-lucide="banknote"></i><h3>Оплата после доставки</h3></div><p>Наличными или переводом по СБП — когда автомобиль уже доставлен.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="section" id="faq" aria-labelledby="faq-title">
+  <div class="wrap faq-grid">
+    <div>
+      <span class="sec-tag reveal">08 · Вопросы</span>
+      <h2 class="reveal" id="faq-title" data-delay="80">Частые вопросы</h2>
+      <p class="lead reveal" data-delay="160">Не нашли ответ — позвоните, диспетчер проконсультирует бесплатно.</p>
+    </div>
+    <div id="faqList" class="reveal" data-delay="120"></div>
+  </div>
+</section>
+
+<!-- ============ ЗОНА ВЫЕЗДА ============ -->
+<section class="section" id="zona" aria-labelledby="zona-title">
+  <div class="wrap zone-grid">
+    <div>
+      <span class="sec-tag reveal">09 · Зона выезда</span>
+      <h2 class="reveal" id="zona-title" data-delay="80">Москва и вся Московская область</h2>
+      <p class="lead reveal" data-delay="160">Машины распределены по округам Москвы, поэтому подаём быстро в любом направлении — включая Новую Москву и ближнее Подмосковье.</p>
+      <ul class="zone-chips reveal" data-delay="240">
+        <li><i data-lucide="map-pin"></i>Москва в пределах МКАД — городской тариф</li>
+        <li><i data-lucide="route"></i>До 50 км за МКАД — +55 ₽/км</li>
+        <li><i data-lucide="flag"></i>Свыше 50 км от Москвы — межгород, 45 ₽/км</li>
+        <li><i data-lucide="moon"></i>Ночью и в праздники — без наценок</li>
+      </ul>
+    </div>
+    <div class="map-panel reveal" data-delay="120">
+      <!-- Демо-карта: работает без ключей и аккаунтов.
+           Свою карту с зоной делайте в конструкторе: yandex.ru/map-constructor → «Получить код карты» → замените src ниже. -->
+      <iframe src="https://yandex.ru/map-widget/v1/?ll=37.6177%2C55.7558&amp;z=8&amp;pt=37.6177,55.7558,pm2rdm" title="Зона выезда — Москва и Московская область" loading="lazy" referrerpolicy="no-referrer"></iframe>
+    </div>
+  </div>
+</section>
+
+<!-- ============ КОНТАКТЫ + ФОРМА ============ -->
+<section class="section" id="contacts" aria-labelledby="contacts-title">
+  <div class="wrap contact-grid">
+    <div>
+      <span class="sec-tag reveal">10 · Контакты</span>
+      <h2 class="reveal" id="contacts-title" data-delay="80">Позвоните или оставьте заявку</h2>
+      <!-- ПЛЕЙСХОЛДЕР: вымышленный номер, заменить на реальный -->
+      <a class="big-phone reveal" data-delay="140" href="tel:+74951282424">+7&nbsp;(495)&nbsp;128&#8209;24&#8209;24</a>
+      <div class="msgr reveal" data-delay="200">
+        <!-- ПЛЕЙСХОЛДЕРЫ: вымышленные аккаунты, заменить -->
+        <a class="btn btn-ghost" href="https://wa.me/74951282424" target="_blank" rel="noopener noreferrer"><i data-lucide="message-circle"></i>WhatsApp</a>
+        <a class="btn btn-ghost" href="https://t.me/mosevak24" target="_blank" rel="noopener noreferrer"><i data-lucide="send"></i>Telegram</a>
+      </div>
+      <ul class="info-list reveal" data-delay="260">
+        <li><i data-lucide="clock"></i>Круглосуточно, без выходных и праздников</li>
+        <li><i data-lucide="map-pin"></i>Москва и Московская область · база: Москва, Перовская ул., 61с2</li>
+        <li><i data-lucide="zap"></i>Подача по Москве — 20–40 минут</li>
+        <li><i data-lucide="wallet"></i>Оплата наличными или по СБП после доставки</li>
+        <li><i data-lucide="mail"></i><a href="mailto:zakaz@mosevak24.ru">zakaz@mosevak24.ru</a></li>
+      </ul>
+    </div>
+
+    <div class="form-panel reveal" data-delay="120">
+      <!--
+        ПОДКЛЮЧЕНИЕ GOOGLE ТАБЛИЦЫ:
+        1. Таблица → Расширения → Apps Script → вставить скрипт (см. «Google Apps Script.txt»).
+        2. Развернуть → Новое развёртывание → Веб-приложение (доступ: все).
+        3. URL вставить в CONFIG.googleScriptUrl в js/app.js.
+        Скрипт также дублирует заявку на почту диспетчера и в Telegram-бота.
+        Пока URL пуст — демо-режим (localStorage + консоль).
+        Ограничения этого способа описаны в SECURITY.md, раздел «Известные риски».
+      -->
+      <form id="orderForm" novalidate>
+        <datalist id="cityList">
+          <option>Москва</option><option>Зеленоград</option><option>Троицк</option>
+          <option>Апрелевка</option><option>Балашиха</option><option>Видное</option>
+          <option>Волоколамск</option><option>Воскресенск</option><option>Дмитров</option>
+          <option>Долгопрудный</option><option>Домодедово</option><option>Дубна</option>
+          <option>Егорьевск</option><option>Жуковский</option><option>Звенигород</option>
+          <option>Истра</option><option>Клин</option><option>Коломна</option>
+          <option>Королёв</option><option>Красногорск</option><option>Краснознаменск</option>
+          <option>Лобня</option><option>Лыткарино</option><option>Можайск</option>
+          <option>Мытищи</option><option>Наро-Фоминск</option><option>Ногинск</option>
+          <option>Одинцово</option><option>Орехово-Зуево</option><option>Павловский Посад</option>
+          <option>Подольск</option><option>Пушкино</option><option>Раменское</option>
+          <option>Реутов</option><option>Сергиев Посад</option><option>Серпухов</option>
+          <option>Солнечногорск</option><option>Ступино</option><option>Фрязино</option>
+          <option>Химки</option><option>Чехов</option><option>Шатура</option>
+          <option>Щёлково</option><option>Электросталь</option>
+        </datalist>
+        <div class="form-row">
+          <div class="field" id="fld-name">
+            <label for="f-name">Ваше имя</label>
+            <input id="f-name" name="name" type="text" placeholder="Александр" autocomplete="name" maxlength="80">
+            <div class="err-msg">Укажите имя</div>
+          </div>
+          <div class="field" id="fld-phone">
+            <label for="f-phone">Телефон</label>
+            <input id="f-phone" name="phone" type="tel" placeholder="+7 (___) ___-__-__" autocomplete="tel" inputmode="tel" maxlength="18">
+            <div class="err-msg">Введите номер полностью</div>
+          </div>
+        </div>
+        <div class="field" id="fld-from">
+          <label for="f-from">Откуда забрать автомобиль</label>
+          <div class="addr-row">
+            <input id="f-from-city" type="text" list="cityList" placeholder="Город" maxlength="60" aria-label="Город подачи">
+            <input id="f-from" type="text" placeholder="Улица и дом / ориентир" maxlength="200">
+          </div>
+          <div class="map-status" id="map-from" role="status"></div>
+          <div class="err-msg">Укажите город и адрес подачи (улица и дом)</div>
+        </div>
+        <div class="field" id="fld-to">
+          <label for="f-to">Куда доставить</label>
+          <div class="addr-row">
+            <input id="f-to-city" type="text" list="cityList" placeholder="Город" maxlength="60" aria-label="Город доставки">
+            <input id="f-to" type="text" placeholder="Улица и дом / пункт доставки" maxlength="200">
+          </div>
+          <div class="map-status" id="map-to" role="status"></div>
+          <div class="err-msg">Укажите город и адрес доставки (улица и дом)</div>
+        </div>
+        <div class="field">
+          <label for="f-comment">Коротко о ситуации <span class="label-plain">(необязательно)</span></label>
+          <textarea id="f-comment" name="comment" rows="3" maxlength="1000" placeholder="Например: не заводится после ДТП, переднее колесо заблокировано"></textarea>
+        </div>
+        <div class="field" id="fld-consent">
+          <label class="consent">
+            <input type="checkbox" id="f-consent">
+            <span>Я даю согласие на обработку персональных данных и принимаю условия <a href="privacy.html" title="Политика обработки персональных данных">политики конфиденциальности</a></span>
+          </label>
+          <div class="err-msg">Нужно согласие на обработку данных</div>
+        </div>
+        <button class="btn btn-primary" type="submit" id="submitBtn"><i data-lucide="send"></i>Отправить заявку</button>
+        <div class="form-privacy">Перезвоним в течение 5 минут.</div>
+      </form>
+
+      <div class="form-success" id="formSuccess" role="status">
+        <div class="ok-ico"><i data-lucide="check"></i></div>
+        <h3>Заявка <span class="mono accent" id="orderNum"></span> принята</h3>
+        <p>Диспетчер перезвонит в течение 5 минут и подтвердит стоимость.</p>
+        <p class="demo-note" id="demoNote" hidden>Демо-режим: заявка сохранена локально.<br>Подключите Google Таблицу — данные будут уходить туда.</p>
+        <button class="btn btn-ghost mt-22" id="againBtn" type="button">Отправить ещё одну</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap footer-in">
+    <a href="#top" class="logo logo-sm"><span class="logo-dot"></span>МОСЭВАК<span class="accent">·</span>24</a>
+    <span>© <span id="year"></span> · <a href="privacy.html" class="muted-text">Политика конфиденциальности</a></span>
+    <a class="header-phone" href="tel:+74951282424">+7&nbsp;(495)&nbsp;128&#8209;24&#8209;24</a>
+  </div>
+</footer>
+
+<div class="toasts" id="toasts" role="status" aria-live="polite"></div>
+
+</body>
+</html>

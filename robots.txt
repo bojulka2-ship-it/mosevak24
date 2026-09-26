@@ -1,0 +1,14 @@
+# robots.txt — МОСЭВАК 24
+# Разрешаем индексацию всего публичного сайта.
+
+User-agent: *
+Allow: /
+
+# Служебные и черновые разделы не публикуются
+Disallow: /Draft/
+Disallow: /node_modules/
+Disallow: /.git/
+
+# Карта сайта
+# ВНИМАНИЕ: замените user на ваш GitHub-аккаунт перед публикацией.
+Sitemap: https://bojulka2-ship-it.github.io/mosevak24/sitemap.xml

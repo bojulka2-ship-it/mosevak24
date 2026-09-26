@@ -1,0 +1,21 @@
+# Нормализация переводов строк.
+# Нужно, чтобы Windows-разработчики и GitHub Pages видели одинаковые файлы:
+# без этого Windows-клоненты получают CRLF, а css/js/html — LF, и в диффах
+# появляется шум из-за переводов строк.
+# Текст — всегда LF в репозитории и в рабочей копии.
+* text=auto eol=lf
+
+# Двоичные файлы не трогаем вообще (иначе Git может «испортить» картинки).
+*.png   binary
+*.jpg   binary
+*.jpeg  binary
+*.webp  binary
+*.gif   binary
+*.ico   binary
+*.zip   binary
+
+# Шрифты и бинарные ресурсы
+*.woff  binary
+*.woff2 binary
+*.ttf   binary
+*.eot   binary

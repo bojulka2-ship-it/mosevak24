@@ -1,0 +1,104 @@
+# Служебные файлы Git
+# (.gitattributes НЕ игнорируется — он нужен в репозитории, см. файл рядом)
+.github/
+.git/
+
+# Черновики и рабочие материалы — не публикуем
+Draft/
+*.docx
+*.doc
+*.xlsx
+*.pptx
+
+# Архивы
+*.zip
+*.rar
+*.7z
+*.tar.gz
+*.tgz
+
+# Чужие/неиспользуемые ассеты сайта
+# (используются только 01, 02, 03 + og-image, собранный из 06)
+photos/04-loading.jpg
+photos/05-dtp.jpg
+photos/06-hero-wide.jpg
+
+# node_modules — если решите собрать что-то (sharp, html-validate)
+node_modules/
+package.json
+package-lock.json
+npm-debug.log*
+yarn.lock
+pnpm-lock.yaml
+
+# Переменные окружения и секреты
+# ВНИМАНИЕ: config с ключами держите вне репозитория
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.crt
+secrets.json
+config.local.js
+config.local.json
+
+# Сборка и минификация (если добавите сборочный шаг)
+dist/
+build/
+.cache/
+*.min.js
+*.min.css
+*.map
+
+# Логи и отчёты
+*.log
+npm-debug.log*
+yarn-error.log*
+lighthouse-report*.html
+lighthouse-report*.json
+
+# Кэш инструментов
+.cache/
+.parcel-cache/
+.eslintcache
+.stylelintcache
+
+# ОС
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+Desktop.ini
+$RECYCLE.BIN/
+*.lnk
+
+# Редакторы и IDE
+.vscode/
+!.vscode/extensions.json
+.idea/
+*.iml
+*.swp
+*.swo
+*~
+*.bak
+*.orig
+*.swp
+.#*
+.\#*
+\#*\#
+
+# Системные
+Thumbs.db
+desktop.ini
+
+# Прочее
+*.tmp
+*.temp
+*.log.*
+.htaccess.local
