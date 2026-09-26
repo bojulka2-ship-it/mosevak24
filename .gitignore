@@ -23,6 +23,11 @@ photos/04-loading.jpg
 photos/05-dtp.jpg
 photos/06-hero-wide.jpg
 
+# Исходные PNG-скриншоты. В репозитории лежат только .webp — полностраничные
+# PNG весят 7,4 МБ против 2,3 МБ в WebP. PNG остаются локально как оригинал,
+# из них пересобирается webp командой из README (раздел «Скриншоты»).
+docs/*.png
+
 # node_modules — если решите собрать что-то (sharp, html-validate)
 node_modules/
 package.json

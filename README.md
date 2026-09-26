@@ -306,22 +306,40 @@ node --check js/app.js && node --check js/privacy.js && node --check js/icons.js
 
 ## Скриншоты
 
-Сняты в headless Chrome 1440×3400 (desktop) и 430×2600 (mobile).
+Хранятся в WebP — полностраничные снимки в PNG весили 7,4 МБ, в WebP занимают
+2,3 МБ. Используются только в этом README, в вёрстке сайта не участвуют.
 
-| Главная — десктоп | Калькулятор |
+| Главная — десктоп | Главная — мобильный |
 |---|---|
-| ![Главная, десктоп](docs/screenshot-desktop.png) | ![Калькулятор](docs/screenshot-calc.png) |
+| ![Главная, десктоп](docs/screenshot-desktop.webp) | ![Главная, мобильный](docs/screenshot-mobile.webp) |
 
-| Форма заявки и контакты | Главная — мобильный |
-|---|---|
-| ![Форма заявки](docs/screenshot-form.png) | ![Главная, мобильный](docs/screenshot-mobile.png) |
+Структура таблицы, в которую складываются заявки:
 
-Переснять после изменений вёрстки:
+| Таблица Google Sheets |
+|---|
+| ![Пример таблицы](docs/Table_example.webp) |
+
+Переснять после изменений вёрстки и положить в репозиторий в WebP:
 
 ```bash
 python -m http.server 8000
-chrome --headless=new --hide-scrollbars --window-size=1440,3400 \
+
+# 1. Снять в PNG (Chrome умеет писать только PNG)
+chrome --headless=new --hide-scrollbars --window-size=2803,16384 \
        --screenshot=docs/screenshot-desktop.png http://localhost:8000/
+
+# 2. Сконвертировать в WebP.
+#    Предел формата WebP — 16383 px по стороне, поэтому картинки выше
+#    16383 px (например полностраничные 2803x16384) нужно предварительно
+#    обрезать на 1 px: -vf "crop=2803:16383:0:0". Без кропа ffmpeg ошибется.
+#    -preset text подбирает параметры под текст и скриншоты.
+ffmpeg -y -i docs/screenshot-desktop.png -vf "crop=2803:16383:0:0" \
+       -c:v libwebp -quality 92 -compression_level 6 -preset text \
+       docs/screenshot-desktop.webp
+
+# 3. Закоммитить webp. PNG коммитить не нужно — он в .gitignore
+#    (docs/*.png), лежит локально как оригинал для пересборки.
+git add docs/screenshot-desktop.webp
 ```
 
 ---
