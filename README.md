@@ -338,6 +338,10 @@ node --check js/app.js && node --check js/privacy.js && node --check js/icons.js
 |---|---|
 | ![Главная, десктоп](docs/screenshot-desktop.webp) | ![Главная, мобильный](docs/screenshot-mobile.webp) |
 
+| Калькулятор | Форма заявки |
+|---|---|
+| ![Калькулятор стоимости](docs/Calc.webp) | ![Форма заявки](docs/Applic.webp) |
+
 Структура таблицы, в которую складываются заявки:
 
 | Таблица Google Sheets |
